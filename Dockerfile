@@ -1,15 +1,15 @@
-FROM squid:latest
+FROM ubuntu:22.04
 
-# ติดตั้ง apache2-utils สำหรับ htpasswd
-RUN apt-get update && apt-get install -y apache2-utils
+# ติดตั้ง squid และ apache2-utils
+RUN apt-get update && \
+    apt-get install -y squid apache2-utils && \
+    apt-get clean
 
-# คัดลอกไฟล์ config และ entrypoint
+# คัดลอก entrypoint และ config
 COPY squid.conf /etc/squid/squid.conf
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# expose ports range (15000-15200)
 EXPOSE 15000-15200
 
-# ใช้ entrypoint script
 ENTRYPOINT ["/entrypoint.sh"]
