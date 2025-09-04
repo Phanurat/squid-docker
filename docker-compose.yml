@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  squid1:
+    build: .
+    container_name: squid1
+    env_file: instance1.env
+    ports:
+      - "15000-15100:15000-15100"
+
+  squid2:
+    build: .
+    container_name: squid2
+    env_file: instance2.env
+    ports:
+      - "15101-15200:15101-15200"
