@@ -28,5 +28,8 @@ cache_log /var/log/squid/cache.log
 cache_dir ufs /var/spool/squid 100 16 256
 EOL
 
+# สร้าง swap directories ก่อน start Squid
+squid -z
+
 # เริ่ม squid
 exec squid -N -d 1
